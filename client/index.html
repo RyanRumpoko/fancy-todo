@@ -6,78 +6,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-signin-client_id"
     content="91556800446-14fh2mcq9qgaspegh5ij5tabm9pv81ii.apps.googleusercontent.com">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
   <title>Fancy Todo</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-light bg-light">
-    <a href="#">FANCY TODO</a>
-    <a href="#" id="logout">Logout</a>
+  <!-- Navbar -->
+  <nav class="navbar navbar-light bg-dark">
+    <a class="navbar-brand text-white">FANCY TODO</a>
+    <button class="btn btn-danger" id="logout">Logout</button>
   </nav>
-  <div class="container">
-    <h1>Fancy Todo</h1><br>
-    <div class="container-user" id="container-user-signin">
-      <h2>Sign In</h2>
-      <form id="form-signin">
-        <div>
-          <label>Email:</label><br>
-          <input type="email" placeholder="user@mail.com" id="signin-email">
-        </div>
-        <div>
-          <label>Password:</label><br>
-          <input type="password" placeholder="password" id="signin-password">
-        </div><br>
-        <button type="submit">Sign In</button>
-        <button type="submit" id="show-signup-form">Sign Up</button>
-        <div>
-          <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        </div>
-      </form>
-    </div>
-    <div class="container-user" id="container-user-signup">
-      <h2>Sign Up</h2>
-      <form id="form-signup">
-        <div>
-          <label>Email:</label><br>
-          <input type="email" placeholder="user@mail.com" id="signup-email">
-        </div>
-        <div>
-          <label>Password:</label><br>
-          <input type="password" placeholder="password" id="signup-password">
-        </div><br>
-        <button type="submit">Sign Up</button>
-        <button type="submit" id="cancel-signup-form">Cancel</button>
-      </form>
-    </div>
-    <div class="container-todo" id="container-todo-all">
-      <h2>Add Your Todo's</h2>
-      <form id="form-add-todo">
-        <div>
-          <label>Title:</label><br>
-          <input type="text" placeholder="Title" id="add-title">
-        </div>
-        <div>
-          <label>Description:</label><br>
-          <input type="text" placeholder="Description" id="add-desc">
-        </div>
-        <div>
-          <label>Due Date:</label><br>
-          <input type="date" id="add-date">
-        </div><br>
-        <button type="submit" id="submit-add">Submit</button>
-        <button type="submit" id="submit-edit">Submit</button>
-        <button type="submit" id="cancel-edit">Cancel</button>
-      </form>
-    </div>
-    <div class="container-card" id="card">
 
+  <div class="container">
+
+    <!-- Welcome Home (Sign In, Sign Up, Welcome Sign) -->
+    <div class="row justify-content-md-center">
+
+      <!-- Sign In Form -->
+      <div class="col-3" id="container-user-signin">
+        <div class="p-3 my-5">
+          <h1>Sign In</h1>
+          <form id="form-signin">
+            <div class="form-group">
+              <label for="signin-email">Email:</label>
+              <input type="email" class="form-control" id="signin-email" placeholder="user@mail.com">
+            </div>
+            <div class="form-group">
+              <label for="signin-password">Password:</label>
+              <input type="password" class="form-control" id="signin-password" placeholder="password">
+            </div>
+            <button class="btn btn-primary" type="submit">Sign In</button>
+            <button class="btn btn-primary" type="submit" id="show-signup-form">Sign Up</button>
+            <div class="py-3">
+              <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Sign Up Form -->
+      <div class="col-3" id="container-user-signup">
+        <div class="p-3 rounded my-5">
+          <h1>Sign Up</h1>
+          <form id="form-signup">
+            <div class="form-group">
+              <label>Email:</label>
+              <input type="email" class="form-control" id="signup-email" placeholder="user@mail.com">
+            </div>
+            <div class="form-group">
+              <label>Password:</label>
+              <input type="password" class="form-control" id="signup-password" placeholder="password">
+            </div>
+            <button class="btn btn-primary" type="submit">Sign Up</button>
+            <button class="btn btn-primary" type="submit" id="cancel-signup-form">Cancel</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Welcome Sign -->
+      <div class="col-3" id="container-welcome-sign">
+        <div class="p-3 rounded my-5">
+          <h1>Fancy Todo</h1>
+          <p>Welcome to fancy todo web app</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Home Section -->
+    <div class="row justify-content-md-center">
+
+      <!-- Add Todo -->
+      <div class="col-3 my-5" id="container-todo-all">
+        <h2 id="add-text">Add Your Todo's</h2>
+        <h2 id="edit-text">Edit Your Todo's</h2>
+        <form id="form-add-todo">
+          <div class="form-group">
+            <label>Title:</label><br>
+            <input type="text" class="form-control" id="add-title" placeholder="Title">
+          </div>
+          <div class="form-group">
+            <label>Description:</label><br>
+            <input type="text" class="form-control" id="add-desc" placeholder="Description">
+          </div>
+          <div>
+            <label>Due Date:</label><br>
+            <input type="date" class="form-control" id="add-date">
+          </div><br>
+          <button class="btn btn-primary" type="submit" id="submit-add">Submit</button>
+          <button class="btn btn-primary" type="submit" id="submit-edit">Submit</button>
+          <button class="btn btn-primary" type="submit" id="cancel-edit">Cancel</button>
+        </form>
+      </div>
+
+      <!-- Card List -->
+      <div class="col-9 my-4">
+        <div class="row my-4 px-4" id="card-list">
+
+        </div>
+      </div>
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="./index.js"></script>
 </body>

@@ -5,15 +5,18 @@ function auth() {
   if (!localStorage.getItem("token")) {
     $("#container-user-signin").show()
     $("#container-user-signup").hide()
+    $("#container-welcome-sign").show()
     $("#container-todo-all").hide()
-    $("#card").hide()
-    $("#logout").hide()
+    $("#card-list").hide()
+    $("nav").hide()
   } else {
     $("#container-user-signin").hide()
     $("#container-user-signup").hide()
+    $("#container-welcome-sign").hide()
     $("#container-todo-all").show()
-    $("#card").hide()
-    $("#logout").show()
+    $("#card-list").show()
+    $("nav").show()
+    $("#edit-text").hide()
     $("#submit-add").show()
     $("#submit-edit").hide()
     $("#cancel-edit").hide()
@@ -99,8 +102,7 @@ function logout() {
 
 // All Todo Handler
 function getTodo() {
-  $("#card").show()
-  $("#card").empty()
+  $("#card-list").empty()
 
   $.ajax({
     method: "GET",
@@ -112,15 +114,19 @@ function getTodo() {
     .done((todo) => {
       console.log(todo);
       todo.forEach((element) => {
-        $("#card").append(`
-        <div class="single-card">
-          <h3>${element.title}</h3>
-          <p>Description: ${element.description}</p>
-          <p>Status: ${element.status}</p>
-          <p>Due Date: ${element.due_date}</p>
-          <a href="#" onclick="getTodoById(${element.id})">Edit</a>
-          <a href="#" onclick="status(${element.id}, ${element.status})">Change Status</a>
-          <a href="#" onclick="remove(${element.id})">Delete</a>
+        $("#card-list").append(`
+        <div class="col-6 mb-4">
+          <div class="card border border-dark">
+            <div class="card-body bg-success">
+              <h3 class="card-title text-white">${element.title}</h3>
+              <p class="card-text text-white">Description: ${element.description}</p>
+              <p class="card-text text-white">Status: ${element.status}</p>
+              <p class="card-text text-white">Due Date: ${element.due_date}</p>
+              <a href="#" class="btn btn-warning text-white" onclick="getTodoById(${element.id})">Edit</a>
+              <a href="#" class="btn btn-warning text-white" onclick="status(${element.id}, ${element.status})">Change Status</a>
+              <a href="#" class="btn btn-warning text-white" onclick="remove(${element.id})">Delete</a>
+            </div>
+          </div>
         </div>
         `)
       })
@@ -166,6 +172,8 @@ function getTodoById(id) {
   $("#submit-edit").show()
   $("#cancel-edit").show()
   $("#submit-add").hide()
+  $("#edit-text").show()
+  $("#add-text").hide()
   $.ajax({
     method: "GET",
     url: baseUrl + "todos/" + id,
@@ -298,5 +306,6 @@ $(document).ready(() => {
     $("#add-title").val("")
     $("#add-desc").val("")
     $("#add-date").val("")
+    $("#add-text").show()
   })
 })
